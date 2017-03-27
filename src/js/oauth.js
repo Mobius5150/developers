@@ -1,10 +1,11 @@
+'use strict';
 (function () {
     var oauthUtils = {
         // Based on: https://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen#4068385
         /**
         * Opens a popup window, in the aproximate center of the screen the source window is on.
         */
-        popupCenter: function (url) {
+        popupCenter (url) {
             // Fixes dual-screen position                         Most browsers      Firefox
             var dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : screen.left;
             var dualScreenTop = window.screenTop !== undefined ? window.screenTop : screen.top;
@@ -32,7 +33,7 @@
                 newWindow.focus();
             }
         },
-        openImplicitOAuthWindow: function (scopes) {
+        openImplicitOAuthWindow (scopes) {
             var clientId = 'fa54866255ea641235e596e5659fa726a4aa9f7ecc72758f';
             var redirectURI = 'https://dev.beam.pro/oauthreturn.html';
             var url = 'https://beam.pro/oauth/authorize?response_type=token&' +
@@ -45,7 +46,7 @@
         /**
         * Retrieve an implicit access token from the url hash
         */
-        getAccessToken: function () {
+        getAccessToken () {
             var hash = window.location.hash.slice(1);
 
             if (hash.length === 0) {
@@ -63,20 +64,20 @@
             return null;
         },
 
-        handleOAuthResponse: function () {
+        handleOAuthResponse () {
             var token = oauthUtils.getAccessToken();
 
             window.opener.oauthUtils.replaceToken(token);
             window.close();
         },
-        replaceToken: function (token) {
+        replaceToken (token) {
             if (!token) {
                 $('.auth-token').html('Error retrieving token');
                 return;
             }
             $('.auth-token').html(token).addClass('retrieved');
         },
-        registerOAuthClickHandler: function (scopes) {
+        registerOAuthClickHandler (scopes) {
             $('.auth-token').off('click').on('click', function (e) {
                 if (e.currentTarget.classList.contains('retrieved')) {
                     return;

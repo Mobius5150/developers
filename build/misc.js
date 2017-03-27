@@ -55,8 +55,9 @@ function getLocals () {
     const out = {
         _,
         orderObject,
-        log: console.log,
+        log: console.log, // eslint-disable-line
         marked,
+        baseUrl: config.baseUrl,
         libraries: require('./tmp/libraries'),
         liveEvents: require('../src/reference/constellation/events'),
         chat: require('../src/reference/chat/data'),
@@ -179,6 +180,20 @@ function getPugOpts () {
     };
 }
 
+function escapeRegExp (str) {
+    return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
+}
+
+function setHtmlPaths (file) {
+    if (file.history.length) {
+        const relPath = file.history[0].replace(file.base, '');
+        const depth = (relPath.match(new RegExp(escapeRegExp(path.sep), 'g')) || []).length + 1;
+        const root = new Array(depth).join('../');
+        return { root };
+    }
+    return { root: '/' };
+}
+
 /**
  * Registers a task that compiles
  * @param  {Gulp} gulp
@@ -190,6 +205,7 @@ module.exports = (gulp, $) => {
 
     gulp.task('html-raml', ['backend-doc'], () => {
         return gulp.src(config.src.html)
+        .pipe($.data(setHtmlPaths))
         .pipe($.pug(getPugOpts()))
         .pipe($.if(config.minify, $.minifyHtml()))
         .pipe(gulp.dest(config.dist.html));
@@ -197,6 +213,7 @@ module.exports = (gulp, $) => {
 
     gulp.task('html-quick', () => {
         return gulp.src(config.src.html)
+        .pipe($.data(setHtmlPaths))
         .pipe($.pug(getPugOpts()))
         .pipe($.if(config.minify, $.minifyHtml()))
         .pipe(gulp.dest(config.dist.html));

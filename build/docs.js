@@ -202,7 +202,9 @@ function filterRaml (node) {
  * @param  {RAMLJSONObject} ramlObj
  */
 function enhanceRamlObj (ramlObj) {
-    filterRaml(ramlObj);
+    if (!process.env.INTERNAL) {
+        filterRaml(ramlObj);
+    }
     fixupDisplayVersion(ramlObj);
     traverseResources(ramlObj);
     ramlObj.types = transverseTypes(ramlObj.types);

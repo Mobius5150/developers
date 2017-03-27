@@ -6,25 +6,25 @@ mixin navbar
             data-target='#js-navbar'
         )
             span.icon.icon-view-headline
-        a.navbar-brand(href='/')
+        a.navbar-brand(href='')
 
     #js-navbar.collapse.navbar-collapse
         ul.nav.navbar-nav.navbar-right
             li.dropdown
                 a.dropdown-toggle(href='#' data-toggle='dropdown') Tutorials
                 ul.dropdown-menu
-                    li: a(href='/tutorials/chatbot.html') Chat
-                    li: a(href='/tutorials/interactive.html') Interactive
-                    li: a(href='/tutorials/rest.html') REST API
-                    li: a(href='/tutorials/constellation.html') Constellation
+                    li: a(href='tutorials/chatbot.html') Chat
+                    li: a(href='tutorials/interactive.html') Interactive
+                    li: a(href='tutorials/rest.html') REST API
+                    li: a(href='tutorials/constellation.html') Constellation
             li.dropdown
                 a.dropdown-toggle(href='#' data-toggle='dropdown') Reference
                 ul.dropdown-menu
-                    li: a(href='/reference/chat/index.html') Chat
-                    li: a(href='/reference/interactive/index.html') Interactive
-                    li: a(href='/rest.html') REST API
-                    li: a(href='/reference/constellation/index.html') Constellation
-                    li: a(href='/reference/oauth/index.html') OAuth
+                    li: a(href='reference/chat/index.html') Chat
+                    li: a(href='reference/interactive/index.html') Interactive
+                    li: a(href='rest.html') REST API
+                    li: a(href='reference/constellation/index.html') Constellation
+                    li: a(href='reference/oauth/index.html') OAuth
 
             li: a(href='https://beam.pro/lab' target='_blank') Lab &amp; Apps
 
@@ -35,14 +35,15 @@ html
     head
         meta(charset='utf-8')
         meta(name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1')
-        link(rel='apple-touch-icon-precomposed' sizes='144x144' href='/img/apple-touch-icon-144x144.png')
-        link(rel='apple-touch-icon-precomposed' sizes='152x152' href='/img/apple-touch-icon-152x152.png')
-        link(rel='shortcut icon' type='image/x-icon' href='/img/favicon.ico')
-        link(rel='icon' type='image/png' href='/img/favicon-32x32.png' sizes='32x32')
-        link(rel='icon' type='image/png' href='/img/favicon-16x16.png' sizes='16x16')
+        base(href=root)
+        link(rel='apple-touch-icon-precomposed' sizes='144x144' href='img/apple-touch-icon-144x144.png')
+        link(rel='apple-touch-icon-precomposed' sizes='152x152' href='img/apple-touch-icon-152x152.png')
+        link(rel='shortcut icon' type='image/x-icon' href='img/favicon.ico')
+        link(rel='icon' type='image/png' href='img/favicon-32x32.png' sizes='32x32')
+        link(rel='icon' type='image/png' href='img/favicon-16x16.png' sizes='16x16')
 
         link(href='https://fonts.googleapis.com/css?family=Heebo:100,300|Inconsolata:400,700|Open+Sans:400,300' rel='stylesheet')
-        link(rel='stylesheet' href='/css/style.css')
+        link(rel='stylesheet' href='css/style.css')
 
         block head
 
@@ -88,18 +89,18 @@ html
                     .col-lg-2.col-md-3.col-xs-6
                         h3 Legal
                         ul
-                            li: a(href='/legal/attributions.html') Attributions
+                            li: a(href='legal/attributions.html') Attributions
                             li: a(href='https://beam.pro/about/privacy' target='_blank') Privacy Policy
                             li: a(href='https://beam.pro/about/tos' target='_blank') Terms of Service
                             li: a(href='https://beam.pro/about/abuse' target='_blank') DMCA/Abuse
 
                     .col-sm-4.visible-lg-block
                         a.footer-logo(href='https://beam.pro' target='_blank')
-                            img(src='/img/footer-logo.png' alt='Beam Logo')
+                            img(src='img/footer-logo.png' alt='Beam Logo')
 
                     .clearfix
                     .copyright Copyright #{new Date().getUTCFullYear()} Beam Interactive, Inc. #[a(href='https://github.com/WatchBeam/developers/issues/new' target='_blank') Spot an issue]?
 
         block scripts
             script(src='//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js')
-            script(src='/js/developers.js')
+            script(src='js/developers.js')
