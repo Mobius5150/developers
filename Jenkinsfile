@@ -8,9 +8,9 @@ node {
         stage("Install") {
             sh 'npm install'
         }
-        stage("Lint") {
-            sh 'npm run lint -s'
-        }
+        // stage("Lint") {
+        //     sh 'npm run lint -s'
+        // }
         stage("Tag build info") {
             sh "git rev-parse --short HEAD > git-commit-id"
             commit_id = readFile('git-commit-id').trim()
