@@ -1,4 +1,5 @@
 'use strict';
+
 (function () {
     var oauthUtils = {
         // Based on: https://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen#4068385
@@ -54,7 +55,7 @@
             }
 
             var hashParts = hash.split('&');
-            for (let i = 0; i < hashParts.length; i++) {
+            for (var i = 0; i < hashParts.length; i++) {
                 var item = hashParts[i].split('=');
                 if (item[0] === 'access_token') {
                     return item[1];

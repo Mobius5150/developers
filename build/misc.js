@@ -55,7 +55,8 @@ function getLocals () {
     const out = {
         _,
         orderObject,
-        log: console.log, // eslint-disable-line
+        // eslint-disable-next-line no-console
+        log: console.log,
         marked,
         baseUrl: config.baseUrl,
         libraries: require('./tmp/libraries'),
@@ -229,7 +230,14 @@ module.exports = (gulp, $) => {
     gulp.task('js', () => {
         return gulp.src(config.src.js)
         .pipe($.concat('developers.js'))
-        .pipe($.if(config.minify, $.uglify()))
+        .pipe($.if(config.minify, $.uglify()).on('error', err => {
+            if (err instanceof $.uglify.GulpUglifyError) {
+                const { cause } = err;
+                cause.message = `${cause.filename}:${cause.line}:${cause.col} ${cause.message}`;
+                throw cause;
+            }
+            throw err;
+        }))
         .pipe(gulp.dest(config.dist.js));
     });
 

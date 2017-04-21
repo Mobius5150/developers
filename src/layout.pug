@@ -92,7 +92,7 @@ html
                             li: a(href='legal/attributions.html') Attributions
                             li: a(href='https://beam.pro/about/privacy' target='_blank') Privacy Policy
                             li: a(href='https://beam.pro/about/tos' target='_blank') Terms of Service
-                            li: a(href='https://beam.pro/about/abuse' target='_blank') DMCA/Abuse
+                            li: a(href='https://beam.pro/about/dmca' target='_blank') DMCA/Abuse
 
                     .col-sm-4.visible-lg-block
                         a.footer-logo(href='https://beam.pro' target='_blank')
@@ -102,5 +102,4 @@ html
                     .copyright Copyright #{new Date().getUTCFullYear()} Beam Interactive, Inc. #[a(href='https://github.com/WatchBeam/developers/issues/new' target='_blank') Spot an issue]?
 
         block scripts
-            script(src='//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js')
-            script(src='js/developers.js')
+            +scripts()
