@@ -540,12 +540,12 @@ In response to this method the server will return an object identical to the ``p
       "result": {
         "usedBytes": 1024,
         "totalBytes": 2048,
-        "resources": [
+        "resources": {
           "id": "default",
           "ownBytes": 400,
           "cumulativeBytes": 1024,
           "resources": [/* recursive */]
-        ]
+        }
       },
       "error": null,
       "id": 123
@@ -1010,18 +1010,12 @@ getGroups |Server Method|
   .. code-block:: js
 
     {
-      "type": "method",
-      "id": 123,
-      "method": "getGroups",
-      "params": {
-        "groups": [
-          {
-            "groupID": "red_team",
-            "etag": "203125580",
-            "sceneID": "has_control"
-          }
-        ]
-      }
+      "type": "reply",
+      "result": {
+        "groups": [ /* an array of Group objects */ ]
+      },
+      "error": null,
+      "id": 123
     }
 
 updateGroups |Server Method|
